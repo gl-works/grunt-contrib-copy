@@ -48,6 +48,10 @@ module.exports = function(grunt) {
           dest = filePair.dest;
         }
 
+          if (filePair.orig.touch && !(dest = filePair.orig.touch(src, dest))) {
+              return;
+          }
+
         if (grunt.file.isDir(src)) {
           grunt.verbose.writeln('Creating ' + chalk.cyan(dest));
           grunt.file.mkdir(dest);
